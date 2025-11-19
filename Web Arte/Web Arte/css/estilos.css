@@ -1,0 +1,654 @@
+*:root {
+    /* Variables de Color */
+    --color-primary: #3498db; /* Azul para botones y enlaces principales */
+    --color-secondary: #e74c3c; /* Rojo para hover */
+    --color-background-start: #F7DC6F;
+    --color-background-mid: #EDBB99;
+    --color-background-end: #DC7633;
+    --color-text-dark: #333;
+    --color-text-light: white;
+    --color-widget-bg: #ffffff;
+    --shadow-base: 3px 3px 5px rgba(0, 0, 0, 0.4);
+}
+
+* { /* El 'widgets' del original se actualiza a un reset estándar */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Roboto:wght@400;700&display=swap'); /* Añadido Roboto para texto general */
+
+html {
+    height: auto;
+    scroll-behavior: smooth; /* Desplazamiento suave */
+}
+
+body {
+    background: linear-gradient(to bottom, var(--color-background-start), var(--color-background-mid), var(--color-background-end));
+    font-family: 'Roboto', sans-serif; /* Fuente más legible para texto general */
+    color: var(--color-text-dark);
+}
+
+h3, h4 {
+    color: var(--color-secondary);
+    font-family: "Bungee Tint", sans-serif;
+    font-size: 24px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+}
+
+/*
+    Encabezado (#cabecero) - Mejor organización con Flexbox
+*/
+#cabecero {
+    width: 98%;
+    margin: 0 auto 20px auto; /* Centrado y margen inferior */
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    align-items: center;
+    gap: 10px; /* Espacio entre los elementos */
+}
+
+#cabecero .logo {
+    order: 2; /* Posición central en escritorio */
+    flex-grow: 1; /* Ocupa el espacio restante */
+    max-width: 65%; /* Limita el ancho en escritorio */
+    text-align: center;
+}
+
+#cabecero .logo img {
+    width: auto; /* Ancho automático para mantener proporción */
+    max-height: 110px;
+    transition: transform 0.3s ease; /* Efecto interactivo al pasar el ratón */
+}
+
+#cabecero .logo img:hover {
+    transform: scale(1.05);
+}
+
+#cabecero .menu {
+    order: 1; /* Posición izquierda en escritorio */
+    background-color: var(--color-widget-bg);
+    border: 1px solid #ccc;
+    width: 15%; /* Ancho ajustado */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-base);
+}
+
+#cabecero .logearse {
+    order: 3; /* Posición derecha en escritorio */
+    width: 15%; /* Ancho ajustado */
+    text-align: right;
+}
+
+#cabecero .menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#cabecero .menu li {
+    list-style-type: none;
+    margin-bottom: 5px;
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 5px;
+    box-shadow: var(--shadow-base);
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones para interactividad */
+}
+
+#cabecero .menu li:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+#cabecero .menu li a {
+    display: block;
+    color: var(--color-text-light);
+    padding: 8px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.button {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border: none;
+    border-radius: 5px;
+    box-shadow: var(--shadow-base);
+    cursor: pointer;
+    padding: 8px 15px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+#cabecero .button:hover {
+    background-color: var(--color-secondary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transform: scale(1.05);
+}
+
+#cabecero .busqueda {
+    order: 4; /* Debajo de los elementos principales */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#cabecero .busqueda input[type="text"] {
+    width: 50%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#cabecero .busqueda input[type="button"] {
+    width: 15%;
+    padding: 8px;
+}
+
+/* Responsive cabecero */
+
+@media (max-width: 991px) {
+    #cabecero {
+        flex-direction: column; /* Apila los elementos */
+        height: auto;
+        width: 100%;
+        padding: 10px;
+    }
+
+    #cabecero .logo {
+        order: 1; /* El logo primero */
+        max-width: 90%;
+        margin-bottom: 10px;
+    }
+
+    #cabecero .menu {
+        order: 3; /* El menú debajo del logo y login */
+        width: 95%;
+        border: none;
+        background: none;
+        box-shadow: none;
+        padding: 5px 0;
+    }
+
+    #cabecero .menu ul {
+        display: flex; /* Menú horizontal en móvil */
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    #cabecero .menu li {
+        width: 45%; /* Dos elementos por fila */
+        margin: 0;
+    }
+
+    #cabecero .logearse {
+        order: 2; /* El login antes del menú */
+        width: 95%;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    #cabecero .busqueda {
+        order: 4;
+        width: 95%;
+    }
+
+    #cabecero .busqueda input[type="text"] {
+        width: 60%;
+    }
+
+    #cabecero .busqueda input[type="button"] {
+        width: 30%;
+    }
+}
+
+/*
+    Estilos Carrusel (#carrusel)
+*/
+#carrusel {
+    width: 90%;
+    margin: 20px auto;
+}
+
+#carrusel .slider-box {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#carrusel .slider-box ul {
+    display: flex;
+    padding: 0;
+    width: 400%;
+    animation: slide 10s infinite alternate ease-in-out;
+}
+
+#carrusel .slider-box li {
+    width: 100%;
+    list-style: none;
+    position: relative;
+}
+
+#carrusel .slider-box img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover; /* Asegura que la imagen se vea bien */
+}
+
+.texto {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrado perfecto */
+    color: var(--color-text-light);
+    font-size: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+/* efecto de el carrusel (manteniendo el original) */
+@keyframes slide {
+    10% { margin-left: 0; }
+    20% { margin-left: 0; }
+    25% { margin-left: -100%; }
+    45% { margin-left: -100%; }
+    50% { margin-left: -200%; }
+    70% { margin-left: -200%; }
+    75% { margin-left: -300%; }
+    100% { margin-left: -300%; }
+}
+
+/*responsive carrusel*/
+@media (max-width: 991px) {
+    #carrusel {
+        width: 95%;
+    }
+    #carrusel .slider-box img {
+        height: 250px;
+    }
+    .texto {
+        font-size: 24px;
+        padding: 8px 15px;
+    }
+}
+
+/*
+    Promociones (#promo), Categorías (#categ), Productos (#prod) - Interactividad mejorada
+*/
+#promo, #categ, #prod {
+    width: 90%;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px dashed var(--color-primary);
+    border-radius: 10px;
+    background-color: var(--color-widget-bg);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#promo .promociones, #categ .categorias, #prod .productos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre los items */
+    justify-content: space-around;
+    padding: 10px 0;
+    height: auto; /* Altura dinámica */
+}
+
+.imgpromocion, .imgcategoria, .imgproductos {
+    width: 180px; /* Ancho fijo para consistencia */
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Interactividad */
+    cursor: pointer;
+    background-color: #f9f9f9;
+}
+
+.imgpromocion:hover, .imgcategoria:hover, .imgproductos:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.imgpromocion img, .imgcategoria img, .imgproductos img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.imgproductos a {
+    display: block;
+    margin-top: 10px;
+    color: var(--color-secondary);
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.imgproductos a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+/* Responsive para Promociones, Categorías, Productos */
+@media (max-width: 991px) {
+    #promo, #categ, #prod {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    #promo .promociones, #categ .categorias, #prod .productos {
+        justify-content: space-evenly;
+        gap: 15px;
+    }
+
+    .imgpromocion, .imgcategoria, .imgproductos {
+        width: 45%; /* Dos por fila en móvil */
+        padding: 5px;
+    }
+}
+
+/*
+    Pie de página (menu fin de pagina)
+*/
+#menuInferior {
+    height: auto;
+    width: 98%;
+    margin: 30px auto;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end; /* Alinear a la derecha */
+    align-items: center;
+}
+
+#menuInferior .menuAbajo {
+    width: auto;
+    margin-left: 0;
+}
+
+.menuAbajo ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    gap: 15px;
+}
+
+.menuAbajo li {
+    list-style-type: none;
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 5px;
+    box-shadow: var(--shadow-base);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.menuAbajo li:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.menuAbajo li a {
+    display: block;
+    color: var(--color-text-light);
+    padding: 8px 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* responsive menu abajo */
+@media (max-width: 991px) {
+    #menuInferior {
+        justify-content: center;
+    }
+    #menuInferior .menuAbajo {
+        width: 90%;
+        margin-left: 0;
+    }
+    .menuAbajo ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .menuAbajo li {
+        width: 45%;
+        margin-bottom: 10px;
+    }
+}
+
+/*
+    Estilo Pagina Nosotros (#cont)
+*/
+#cont {
+    width: 85%;
+    margin: 30px auto;
+    padding: 15px;
+    display: flex;
+    gap: 30px;
+    background-color: var(--color-widget-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#cont .titulo1, #cont .titulo2 {
+    flex: 1; /* Distribución equitativa */
+    padding: 10px;
+}
+
+#cont .titulo1 .mision, #cont .titulo2 .vision {
+    padding: 15px;
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    height: 300px;
+    overflow-y: auto;
+    background-color: #fefefe;
+    line-height: 1.6;
+}
+
+/*responsive nosotros mision y vision */
+@media(max-width: 991px) {
+    #cont {
+        width: 95%;
+        flex-direction: column;
+        gap: 20px;
+    }
+    #cont .titulo1, #cont .titulo2 {
+        width: 100%;
+        padding: 0;
+    }
+    #cont .titulo1 .mision, #cont .titulo2 .vision {
+        height: 250px;
+    }
+}
+
+/*
+    Estilos Contacto (#contacto)
+*/
+#contacto {
+    width: 90%;
+    height: auto;
+    margin: 30px auto;
+    padding: 20px;
+    display: flex;
+    gap: 30px;
+    background-color: var(--color-widget-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#contacto .mapa, #contacto .info {
+    flex: 1;
+    padding: 10px;
+}
+
+#contacto .mapa img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#contacto .info .infocont {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    line-height: 1.8;
+}
+
+#contacto p {
+    margin-top: 10px;
+    color: var(--color-text-dark);
+}
+
+/*responsive Contacto*/
+@media(max-width: 991px) {
+    #contacto {
+        width: 95%;
+        flex-direction: column;
+    }
+    #contacto .mapa, #contacto .info {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+/*
+    Estilos Inicio de Sesión (#cabSesion y .contenedor)
+*/
+#cabSesion {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+#cabSesion .logo {
+    width: 80%;
+    max-width: 400px;
+    margin: 10px auto;
+    text-align: center;
+}
+#cabSesion .logo img {
+    width: 100%;
+    max-height: 140px;
+    transition: transform 0.3s ease;
+}
+#cabSesion .logo img:hover {
+    transform: scale(1.05);
+}
+
+.contenedor {
+    margin: 50px auto;
+    width: 90%;
+    max-width: 450px; /* Ancho máximo para el formulario */
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.7); /* Fondo más oscuro y visible */
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.contenedor .elemento label {
+    color: var(--color-text-light);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.contenedor .elemento input {
+    width: 100%;
+    padding: 10px 5px;
+    color: var(--color-text-light);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--color-text-light);
+    margin-bottom: 25px;
+    outline: none;
+    transition: border-bottom-color 0.3s ease;
+}
+
+.contenedor .elemento input:focus {
+    border-bottom-color: var(--color-primary);
+}
+
+.contenedor .elemento input[type="submit"] {
+    background-color: var(--color-secondary); /* Color llamativo */
+    border: none;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 15px;
+    margin-top: 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contenedor .elemento input[type="submit"]:hover {
+    background-color: var(--color-primary);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.contenedor h4 {
+    text-align: center;
+    color: var(--color-text-light);
+}
+
+.contenedor a {
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #99ccff;
+    text-align: center;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contenedor a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.volver {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.volver img {
+    width: 40px;
+    margin: 0;
+}
+
+.volver a {
+    color: var(--color-text-light);
+    font-size: 18px;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+/*responsive login*/
+@media(max-width: 991px) {
+    .contenedor {
+        width: 95%;
+        padding: 20px;
+    }
+    .contenedor a {
+        font-size: 14px;
+    }
+}
+
+
+
